@@ -43,7 +43,7 @@ install_npm() {
     info "Using default npm version"
   else
     info "Downloading and installing npm $npm_version (replacing version `npm --version`)..."
-    cd $build_dir
+    cd $phoenix_dir
     npm install --unsafe-perm --quiet -g npm@$npm_version 2>&1 >/dev/null | indent
   fi
 }
@@ -70,6 +70,8 @@ install_bower_deps() {
 
   if [ -f $bower_json ]; then
     info "Installing and caching bower components"
+
+	npm install -g bower
 
     if [ -d $cache_dir/bower_components ]; then
       mkdir -p bower_components
